@@ -1,7 +1,7 @@
 "use strict";
 // Upper Hand service worker: cache-first app shell, so the app opens offline after one visit. __BUILD__ is replaced by tools/build-pwa.js
 // with a hash of the bundle, so a new build gets a new cache and the old one is deleted. Calls to api.anthropic.com are never touched or cached.
-const CACHE = "uh-179f1ae419";
+const CACHE = "uh-4a266fb5cb";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
 const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 
@@ -33,7 +33,7 @@ self.addEventListener("fetch", e => {
   const req = e.request;
   if (req.method !== "GET") return;
   let url; try { url = new URL(req.url); } catch (x) { return; }
-  if (url.hostname === "api.anthropic.com") return;   // never intercept the API
+  if (url.hostname === "api.anthropic.com" || url.hostname === "generativelanguage.googleapis.com") return;   // never intercept the API
   if (FONT_HOSTS.includes(url.hostname)) { e.respondWith(fontFetch(req)); return; }
   if (url.origin === self.location.origin) e.respondWith(shellFetch(req));
 });
