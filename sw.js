@@ -1,7 +1,7 @@
 "use strict";
 // Upper Hand service worker: cache-first app shell, so the app opens offline after one visit. __BUILD__ is replaced by tools/build-pwa.js
 // with a hash of the bundle, so a new build gets a new cache and the old one is deleted. Calls to api.anthropic.com are never touched or cached.
-const CACHE = "uh-2119c109e0";
+const CACHE = "uh-6c80566a19";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
 const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 
